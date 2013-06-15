@@ -1,15 +1,19 @@
 require 'test_helper'
+require 'resolv'
 
 class DomainTest < ActiveSupport::TestCase
-  test "get_ip" do
-    d = Domain.find(1)
-    assert_equal "61.21.65.202", d.update_ip
+  test "get_current_ip" do
+    domain = Domain.find(1)
+    current_ip = domain.get_current_ip
+    assert(is_ipaddress_format(current_ip))
+    # assert(Resolv::IPv4::Regex =~ current_ip)
+    # assert_equal "61.21.65.202", domain.update_ip
   end
 
-  test "search_previous_ip" do
-    previous_updated_at = Domain.maximum(:updated_at)
-    d = Domain.order('updated_at').limit(1)
-    assert_equal "192.168.215.3", d.previous_ip
+  test "get_previous_ip" do
+    @domain = Domain.order('updated_at desc').limit(1)
+    assert_equal 1, @domain.size
+    assert_equal "192.168.215.1", @domain[0].previous_ip
   end
 
 end

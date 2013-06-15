@@ -7,11 +7,14 @@
 one: 
   id: 1
   previous_ip: 192.168.215.1
+  updated_at: 2013/01/01 13:00:00
 
 two: 
   id: 2
   previous_ip: 192.168.215.2
+  updated_at: 2013/01/01 12:00:00
 
 three: 
   id: 3
   previous_ip: 192.168.215.3
+  updated_at: 2013/01/01 11:00:00

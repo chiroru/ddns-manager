@@ -10,4 +10,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def is_ipaddress_format(target)
+    if (Resolv::IPv4::Regex =~ target) then
+      return true
+    else
+      return false
+    end
+  end
 end
